@@ -1,4 +1,9 @@
+#! /usr/bin/env python
+# Author: Ziyang Jia
+# E-mail: ziyang.jia@gmail.com
+
 from django.db import models
+from readData import readData
 
 # Table of twitter users
 class TwitterUser(models.Model):
