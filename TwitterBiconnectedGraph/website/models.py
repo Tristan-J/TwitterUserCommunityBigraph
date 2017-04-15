@@ -3,7 +3,7 @@
 # E-mail: ziyang.jia@gmail.com
 
 from django.db import models
-from readData import readData
+from .readData import readData
 
 # Table of twitter users
 class TwitterUser(models.Model):
@@ -29,3 +29,28 @@ class DirectedEdge(models.Model):
 
     def __str__(self):
         return self.source + ',\t' + self.target
+
+# Insert data to database
+def insertData():
+    # insert TwitterUser
+    data = readData('twitter user')
+    user_list = []
+    for i in range(len(data)):
+        t_user = TwitterUser.objects.create(
+            name    = data[i][1],
+            sticker = data[i][2]
+        )
+        t_user.save()
+        user_list.append(t_user)
+
+    # insert DirectedEdge
+    data = readData('directed edge')
+    for i in range(len(data)):
+        t_edge = DirectedEdge.objects.create(
+            source = user_list[data[i][1]-1],
+            target = user_list[data[i][2]-1],
+            count  = data[i][3]
+        )
+        t_edge.save()
+
+insertData()
