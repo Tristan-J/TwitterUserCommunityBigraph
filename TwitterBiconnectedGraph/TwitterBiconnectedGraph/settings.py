@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'TwitterBiconnectedGraph.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new_database',
+        'NAME': 'website',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': 'localhost',
@@ -148,3 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+'''
+    Local defined settings
+'''
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Twitter User Bi-connected Graph</title>
+
+    {% load staticfiles %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'index/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'index/css/index.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- header -->
+        <header id='masthead'>
+            <dir class='layer'>
+                <img class='logo' src="{% static 'index/images/logo.png' %}" alt='logo' style='width:42px;float:left;margin-right:25px;margin-top: 5px;' />
+                <h1>Twitter message analysis & user community study</h1>
+                <h4>- CS512 of 2017 Spring</h4>
+                <ul>
+                    <li>Ziyang Jia</li>
+                    <li>Shuyin Qiu</li>
+                    <li>Junjie Ouyang</li>
+                </ul>
+            </dir>
+        </header>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div id='main-left'>
+                <ul>
+                    {% for twitter_user in all_twitter_user %}
+                    <li style="padding:10px;">
+                        <span style="color: white; font-weight: bold; cursor: pointer;"  user_id='{{twitter_user.id}}'  onmouseover="this.style.cssText='color: #ff6300; font-weight: bold; cursor: pointer;'" onmouseleave="this.style.cssText='color:white; font-weight: bold; cursor: pointer;'">
+                            {{twitter_user.name}}
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id='main-right'>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{% static 'index/js/jquery.js' %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'index/js/bootstrap.min.js' %}"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    // $("#menu-toggle").click(function(e) {
+    //     e.preventDefault();
+    //     $("#wrapper").toggleClass("toggled");
+    // });
+    </script>
+
+</body>
+
+</html>
