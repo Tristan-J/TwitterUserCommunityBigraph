@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .readData import readData
 from .models import *
+import json
 
 def index(response):
     # insert data, only needed in the first time
@@ -42,23 +43,44 @@ def insertData():
     TwitterUser.objects.all().delete()
     DirectedEdge.objects.all().delete()
 
-    # insert TwitterUser
-    data = readData('twitter user')
-    user_list = []
-    for i in range(len(data)):
+    # read data
+    [names, messages] = readData('twitter user')
+
+    # insert data
+    for name in names:
+        # insert into Table TwitterUser
         t_user = TwitterUser.objects.create(
-            name    = data[i][1],
-            sticker = data[i][2]
+            name    = name,
+            sticker = 'I am a sticker~',
         )
         t_user.save()
-        user_list.append(t_user)
+        # insert into Table TwitterMessage
+        for message in messages[name]:
+            t_message = TwitterMessage.objects.create(
+                message = message,
+                source  = t_user,
+            )
+            t_message.save()
+        # insert into Table DirectedEdge
+        # to be continued
 
-    # insert DirectedEdge
-    data = readData('directed edge')
-    for i in range(len(data)):
-        t_edge = DirectedEdge.objects.create(
-            source = user_list[data[i][1]-1],
-            target = user_list[data[i][2]-1],
-            count  = data[i][3]
-        )
-        t_edge.save()
+    # # insert TwitterUser
+    # data = readData('twitter user')
+    # user_list = []
+    # for i in range(len(data)):
+    #     t_user = TwitterUser.objects.create(
+    #         name    = data[i][1],
+    #         sticker = data[i][2]
+    #     )
+    #     t_user.save()
+    #     user_list.append(t_user)
+
+    # # insert DirectedEdge
+    # data = readData('directed edge')
+    # for i in range(len(data)):
+    #     t_edge = DirectedEdge.objects.create(
+    #         source = user_list[data[i][1]-1],
+    #         target = user_list[data[i][2]-1],
+    #         count  = data[i][3]
+    #     )
+    #     t_edge.save()

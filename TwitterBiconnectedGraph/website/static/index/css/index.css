@@ -33,13 +33,12 @@ ul {
 }
 
 #main-left {
-    width: 190px;
+    width: 20%;
     float: left;
 }
 
 #main-left ul {
-    /*padding-left: 0px;*/
-    /*padding: 50px, 30px;*/
+    padding-left: 0px;
 }
 
 #main-left ul li {
@@ -48,7 +47,16 @@ ul {
     line-height: 30px;
 }
 
+#main-middle {
+    width: 60%;
+    height: 500px;
+    float: left;
+    border: solid 1px black;
+}
+
 #main-right {
-    width: 77%;
+    width: 20%;
+    height: 500px;
     float: right;
+    border: solid 1px black;
 }

@@ -4,17 +4,25 @@
 
 from django.db import models
 # from models import *
-import csv
+# import csv
+import json
 
 # main entrance for reading
 def readData(data_name):
     return {
-        'directed edge': readDirectedEdge(),
+        # 'directed edge': readDirectedEdge(),
         'twitter user': readTwitterUsers(),
     }[data_name]
 
-# print readTwitterUsers()
+# 
 def readTwitterUsers():
+    with open('F:/Workspace/Rutgers/intro_to_alg/final_proj/src/oq/twitter_data/timeline_KingJames_At.txt', 'r') as jsonfile:
+        t_data = json.load(jsonfile)
+        t_keys = list(t_data.keys())
+        return [t_keys, t_data]
+
+# print readTwitterUsers()
+def readTwitterUsers_demo():
     data = []
     with open('F:/Workspace/Rutgers/intro_to_alg/final_proj/src/TwitterBiconnectedGraph/website/data/twitterUser.csv') as csvfile:
         t_reader = list(csv.reader(csvfile))
@@ -25,7 +33,7 @@ def readTwitterUsers():
     return data
 
 # print(readData('directed edge'))
-def readDirectedEdge():
+def readDirectedEdge_demo():
     data = []
     with open('F:/Workspace/Rutgers/intro_to_alg/final_proj/src/TwitterBiconnectedGraph/website/data/directedEdge.csv') as csvfile:
         t_reader = list(csv.reader(csvfile))
